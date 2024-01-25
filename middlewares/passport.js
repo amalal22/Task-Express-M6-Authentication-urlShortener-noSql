@@ -1,7 +1,7 @@
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 
-const LocalStrategy = require("passport-lpcal").strategy;
+const LocalStrategy = require("passport-local").Strategy;
 
 const localStrategy = new LocalStrategy(
   {

@@ -44,11 +44,9 @@ exports.getUsers = async (req, res) => {
 
 exports.register = async (req, res, next) => {
   try {
-    const password = req.body.password;
-    const hashPassword = await hashPass(password);
-    req.body.password = hashPassword;
+    req.body.password = await hashPass(req.body.password);
     const user = await User.create(req.body);
-
+    const token = generateToken(user);
     return res.status(201).json({ token: token });
   } catch (error) {
     next(error);
